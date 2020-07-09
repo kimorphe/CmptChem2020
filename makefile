@@ -4,7 +4,8 @@ text.pdf: text.dvi
 text.dvi: text.tex \
 	Figs/cg_model.eps \
        	Figs/revs.eps \
-       	Figs/xrd.eps 
+       	Figs/xrd.eps \
+       	Figs/rdfs.eps 
 	platex  text.tex
 
 Figs/cg_model.eps: Figs/cg_model.svgz
@@ -13,3 +14,5 @@ Figs/revs.eps: Figs/revs.svgz
 	inkscape -z -f Figs/revs.svgz -E Figs/revs.eps
 Figs/xrd.eps: Figs/xrd.svgz
 	inkscape -z -f Figs/xrd.svgz -E Figs/xrd.eps
+Figs/rdfs.eps: Figs/rdfs.svgz
+	inkscape -z -f Figs/rdfs.svgz -E Figs/rdfs.eps
