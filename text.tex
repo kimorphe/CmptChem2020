@@ -53,9 +53,29 @@
 3日本原子力研究開発機構核燃料サイクル工学研究所\\
 (〒319-1112 茨城県那珂郡東海村村松4-33)
 \end{center}
+\abstract{Abstract:
+This study proposes a 2D coarse-grained molecular dynamics method for the numerical compaction 
+simulation of montmorilonite clay moleculues. In this method, a unit structure of clay molecule 
+with hydrated water is coarse-grained into a particle (CG-particle) to model the deformable 
+molecule with tractable computational effort. Two kinds of inter-particle forces are considered 
+in the simulations of CG particle system. The first is the intra-molecular force bonding the 
+particle consisting a single moleculer. The 2nd is the inter-molecular van-der Waals force 
+acting a pair of molecules. The former is given by a linear spring connetcting CG particles, 
+while the latter by a Lenard-Jones(LJ) potential. 
+The spring constants for the intra-molecular force are determined so as to 
+proviede a reasonable rigidity to the molecule. The characterstics distance of the LJ 
+potential is given depending on the amout of water  hydrated to the surfce of the molecule.
+ With this model, compaction of water-hydrated clay is simulated. 
+ The texture of the numerically compacted clay model is then evaluated by synthesizing 
+ X-ray diffraction pattern as well as the radial distribution function. 
+As the reults, it is shown that the experimentally observed XRD-peak can be 
+reproduced by the preesent model. It is also found that the 4-6 molecules are 
+ layered as a result of the analysis by the radial distribution function .
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{緒言}
-モンモリロナイトはSiO$_4$四面体とAl(OH)$_6$八面体が2:1で積層した層状ケイ酸塩鉱物の一種で、分子同士が陽イオンを介在して積層構造を作ることが知られている。
+\section{背景、目的}
+モンモリロナイトはSiO$_4$四面体とAl(OH)$_6$八面体が2:1で積層した層状ケイ酸塩鉱物の一種で、
+分子同士が陽イオンを介在して積層構造を作ることが知られている。
 積層したモンモリロナイト分子の層間には、陽イオンに水和する形で水分が取り込まれ、吸湿によって膨潤する。
 モンモリロナイト分子は、厚さが約1nm，幅が最大で1μm程度の微細かつ扁平な分子で、圧縮成形して密に固めることで微細かつ複雑な
 間隙構造を有する多孔質材となり、その透水係数や物質拡散係数は非常に小さい。このことから、放射性廃棄物の地層処分には、
@@ -65,14 +85,18 @@
 しかしながら、モンモリロナイト分子は非常に微細な鉱物結晶であることから、水分分布や積層構造すなわち組織構造を顕微鏡やCTイメージング等で
 直接観察することができない。また、長期に渡る透水実験や物質実験はその実施には多大なコストを要するかそもそも実施自体が難しい。
 このような理由から、モンモリロナイトの組織構造やマクロ物性を計算科学的な方法でによる調べることが重要となる．
-そこで本研究では、粗視化分子動力学法によって粘土の圧縮成形を模擬した数値シミューレションを行い、粘土含水系の組織構造を生成する方法を開発する。
-以下では、モンもリロナイト分子の粗視化モデルと数値解析方法について述べた後、粘土含水系の圧縮凝集に関する2次元シミュレーションの結果を報告する。
-さらに、シミュレーションで得られた組織構造から合成したX線回折パターンを示し、実験でも観察されるX線回折ピークが得られることを示す。
-以上により、本研究で提案する一連の手法が、実験や観察が困難な粘土含水系のメソスケール構造を調べる上で有効なものとなりうることを示す。
+そこで本研究では、粗視化分子動力学法によって粘土の圧縮成形を模擬した数値シミューレションを行い、
+粘土含水系の組織構造を生成する方法を開発する。
+以下では、モンモリロナイト分子の粗視化モデルと数値解析方法について述べた後、
+粘土含水系の圧縮凝集に関する2次元シミュレーション結果の一例を示す。
+また、シミュレーションで得られた組織構造から評価したX線回折パターンと動径分布関数を示し、
+実験でも観察されるX線回折ピークが得られること、粘土分子の積総数に関する定量的な見積が
+与えられることを示す。以上により、本研究で提案する一連のシミュレーション手法が、
+実験や観察が困難な粘土含水系のメソスケール構造を調べる上で有効なものとなりうることを示す。
 \section{方法}
-\begin{wrapfigure}[11]{r}[0mm]{60mm}
+\begin{wrapfigure}[13]{r}[0mm]{70mm}
 	\centering
-	\includegraphics[keepaspectratio,width=50mm]{Figs/cg_model.eps}
+	\includegraphics[keepaspectratio,width=60mm]{Figs/cg_model.eps}
 	\caption{モンモリロナイト分子の粗視化MDモデル}
 	\label{fig:fig1}
 \end{wrapfigure}
@@ -113,7 +137,7 @@ $\sigma$の大小で水和水の量を表現する。
 変化$\Delta U$を計算する。$\Delta U<0$となる場合は、水分の授受が発生するとして各々の粒子の$\sigma$値を実際に変更する。
 この操作を一定の計算ステップ間隔で全ての粗視化粒子について行うことで、系全体がよりエネルギーの低い状態に向かうように
 計算を進める。このようにすることで、粘土分子層間に小さな空隙が残ること無く自然な水分配置の組織構造を得ることができる。
-\section{結果}
+\section{結果、考察}
 \subsection{圧縮凝集挙動}
 %--------------------
 \begin{figure}[h]
@@ -159,17 +183,35 @@ $t=1$[ns]が圧縮終了時のユニットセル内の分子配置を示して�
 なお、計算を行った系が小さいことから、図\ref{fig:fig3}のXRDパターンはあまり
 滑らかになっていない。しかしながら、ピーク角度は、二層膨潤状態にある粘土の
 X線回折ピークと概ね一致しており、本シミュレーションが妥当なものであることを
-示唆する結果であると考えられる。
+示唆する結果と考えられる。
 \subsection{動径分布関数}
-\begin{wrapfigure}[15]{r}[0mm]{80mm}
+図\ref{fig:fig4}に、圧縮凝集シミュレーションの結果から求めた動径分布関数を示す。
+XRDパターンと同様、ここでも、圧縮途上を含め7つ時間ステップにおける動径分布関数を
+乾燥密度、間隙率とともに示している。
+動径分布関数は、着目点から一定の距離に存在する粒子の存在割合を示すもので、横軸は
+動径距離$r$を、縦軸は粒子数を表している。
+ただしここでは、粘土分子の積層状況を調べることを意図しているため、
+同一分子に属する粒子はカウントしていない。
+図\ref{fig:fig4}に示した動径分布関数は、いずれも3つのピークが現れている。ただし、
+距離0の側から数えて3つめ($r=4\sim 5$nm付近)のピークは他と比べて小さい。
+このことから、一つの分子に対して、上下におよそ2$\sim$3分子程度が積層していることが分かる。
+また、この傾向は密度(間隙率)が小さい(大きい)ときにも同様であることから、
+粘土分子の積層が圧縮の早い段階で生じ、積層数は圧縮が進行後も際限なく増加するわけではない
+ことが分かる。この解釈は、前出のXRDパターンの挙動とも整合している。
+このような積層構造の形成挙動は、実験や全原子MD計算による検討が難しく、
+今後、飽和あるいは不飽和粘土の混練や締固め、厚密時の微視的な挙動を調べる上で
+粗視化MDによるシミュレーションが有用なものとなることが期待できる。
+\begin{wrapfigure}[13]{r}[0mm]{80mm}
 	\centering
 	\includegraphics[keepaspectratio,width=75mm]{Figs/rdfs.eps}
 	\caption{粗視化MD計算の結果から評価した動径分布関数}
 	\label{fig:fig4}
 \end{wrapfigure}
 \section{まとめ}
-本稿では、粗視化MDによって計算した水和モンモリロナイトの組織構造とそのX線回折パターンを示し、X線回折ピークは概ね実験で得られる結果に一致することを述べた。
-今後は、より大きな系で同様な計算を行い、実験で得たX線回折パターンと比較すること、3次元系でのシミュレーションを行うことが課題となる。
+本稿では、粗視化MDによって計算した水和モンモリロナイトの組織構造とそのX線回折パターンを示し、
+X線回折ピークは概ね実験で得られる結果に一致することを述べた。
+今後は、より大きな系で同様な計算を行い、実験で得たX線回折パターンと比較すること、
+3次元系でのシミュレーションを行うことが課題となる。
 \begin{thebibliography}{99}
 \bibitem{Kawamura}
 	河村先生，粘土関係の文献
@@ -178,7 +220,16 @@ X線回折ピークと概ね一致しており、本シミュレーションが�
 %\bibitem{Koide}
 %	小出昭一郎,"物理現象のフーリエ解析", ちくま学芸文庫, 2018.
 \end{thebibliography}
-
+\vspace{5mm}
+\begin{center}
+Kazushi KIMOTO$^1$, Katsuyuki KAWAMURA$^2$, Hitoshi MAKINO$^3$\\
+1 Department of Life and Environmental Science, Okayama University 
+(3-1-1, Tsushima-naka, Kita-ku, Okayama-shi, Okayama, 700-8530, Japan)
+\\
+2 Tokyo Institute of Technology (2-12-1, O-okayama, Meguro-ku, Tokyo, 152-8550, Japan)\\
+3 Japan Atomic Energy Agency 核燃料サイクル工学研究所\\
+(4-33, Muramatsu, Tohkai-mura, Naka-gun, Ibaragi, 319-1112, Japan)
+\end{center}
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
